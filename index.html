@@ -31,7 +31,7 @@ html,body{height:100%;background:#05070c;color:var(--fg);font-family:var(--displ
 
 .tag{font-family:var(--mono);font-size:22px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:22px}
 h1{font-size:132px;line-height:.98;font-weight:700;letter-spacing:-.03em;text-wrap:balance}
-h2{font-size:76px;line-height:1.05;font-weight:700;letter-spacing:-.02em;margin-bottom:48px;text-wrap:balance}
+h2{font-size:76px;line-height:1.05;font-weight:700;letter-spacing:-.02em;margin-bottom:48px;text-wrap:balance;max-width:1240px}
 p,li{font-size:34px;line-height:1.45;color:var(--muted)}
 b,strong{color:var(--fg);font-weight:500}
 code,.mono{font-family:var(--mono)}
@@ -46,8 +46,10 @@ code,.mono{font-family:var(--mono)}
   linear-gradient(var(--line) 1px,transparent 1px) 0 0/120px 120px,
   linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/120px 120px;opacity:.35;
   mask-image:linear-gradient(to top,#000 10%,transparent 75%)}
-.cover .arc{position:absolute;right:-260px;top:-260px;width:1100px;height:1100px;border-radius:50%;border:2px solid var(--line)}
-.cover .arc.b{width:760px;height:760px;right:-90px;top:-90px;border-color:var(--accent);opacity:.55}
+.cover .hero{position:absolute;right:0;top:0;height:100%;width:auto;object-fit:cover;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 38%);mask-image:linear-gradient(to right,transparent 0,#000 38%)}
+.cover h1{font-size:116px}
+.cover .sub,.cover .meta{max-width:1000px}
 .cover>*{position:relative}
 .cover .sub{font-size:44px;color:var(--muted);margin-top:36px}
 .cover .meta{margin-top:70px;font-family:var(--mono);font-size:24px;color:var(--muted);letter-spacing:.06em}
@@ -61,12 +63,12 @@ code,.mono{font-family:var(--mono)}
 .person .rol{margin-top:auto;font-size:26px;line-height:1.35;color:var(--fg);border-top:1px solid var(--line);padding-top:18px}
 
 /* escenario */
-.fases{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-bottom:40px}
+.fases{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-bottom:24px}
 .fase{background:var(--panel);border:1px solid var(--line);padding:34px}
 .fase .k{font-family:var(--mono);font-size:22px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
-.fase .v{font-family:var(--mono);font-size:64px;font-weight:700;color:var(--fg);margin:14px 0 8px;letter-spacing:-.02em}
+.fase .v{font-family:var(--mono);font-size:52px;white-space:nowrap;font-weight:700;color:var(--fg);margin:14px 0 8px;letter-spacing:-.02em}
 .fase p{font-size:27px;line-height:1.4}
-.axis{position:relative;height:120px;margin-top:18px}
+.axis{position:relative;height:120px;margin-top:18px;flex-shrink:0}
 .axis .line{position:absolute;left:0;right:0;top:44px;height:6px;background:var(--line)}
 .axis .seg1{position:absolute;left:0;top:44px;height:6px;width:46%;background:var(--accent)}
 .axis .seg2{position:absolute;left:46%;top:44px;height:6px;width:54%;background:var(--ok)}
@@ -76,12 +78,20 @@ code,.mono{font-family:var(--mono)}
 .axis .lab.r{transform:translateX(-100%)}
 
 /* diagrama */
-.diagram{flex:1;min-height:0;display:flex;gap:48px;align-items:stretch}
-.diagram .img{flex:1;min-width:0;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:18px}
-.diagram img{max-width:100%;max-height:100%;object-fit:contain}
-.diagram ol{width:520px;list-style:none;display:flex;flex-direction:column;gap:26px;counter-reset:s}
-.diagram li{counter-increment:s;display:grid;grid-template-columns:56px 1fr;gap:18px;font-size:30px;line-height:1.35}
-.diagram li::before{content:counter(s);font-family:var(--mono);font-weight:700;font-size:26px;color:var(--bg);background:var(--accent);width:44px;height:44px;display:grid;place-items:center}
+.slide.dg{padding-top:96px;padding-bottom:100px}
+.dg h2{margin-bottom:40px}
+.flow{width:100%;height:auto;flex-shrink:0;display:block}
+.flow .nd{fill:var(--panel);stroke:var(--line);stroke-width:2}
+.flow .nd.hi{stroke:var(--accent)}
+.flow .nd.ok{stroke:var(--ok)}
+.flow .ln{stroke:var(--muted);stroke-width:2.5;fill:none}
+.flow .ln.acc{stroke:var(--accent)}
+.flow .ln.dash{stroke-dasharray:8 8;stroke:var(--muted)}
+.flow .t{fill:var(--fg);font:500 25px var(--display)}
+.flow .s{fill:var(--muted);font:400 19px var(--mono)}
+.flow .s2{fill:var(--muted);font:400 17px var(--mono)}
+.flow .s.ok{fill:var(--ok);font-size:22px;font-weight:700}
+.flow .n{fill:var(--accent);font:700 34px var(--mono)}
 
 /* arquitectura */
 .mods{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -114,6 +124,39 @@ code,.mono{font-family:var(--mono)}
 .card li{list-style:none;font-size:28px;line-height:1.4;margin-top:12px}
 .card li::before{content:"› ";color:var(--accent);font-family:var(--mono)}
 
+/* comandos copiables */
+.cmd{display:flex;align-items:center;gap:20px;background:#05080f;border:1px solid var(--line);padding:18px 22px}
+.cmd code{flex:1;min-width:0;font-family:var(--mono);font-size:24px;line-height:1.45;color:#c7d2e6;white-space:pre-wrap;word-break:break-word}
+.cmd code::before{content:"> ";color:var(--accent)}
+.copy{flex-shrink:0;font:500 20px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--fg);background:var(--panel);border:1px solid var(--line);padding:12px 20px;cursor:pointer}
+.copy:hover{border-color:var(--accent)}
+.copy:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.copy.done{color:var(--ok);border-color:var(--ok)}
+.steps{display:flex;flex-direction:column;gap:30px}
+.step{display:grid;grid-template-columns:64px 1fr;gap:24px;align-items:start}
+.step .k{font-family:var(--mono);font-weight:700;font-size:30px;color:var(--bg);background:var(--accent);width:52px;height:52px;display:grid;place-items:center}
+.step h3{font-size:36px;font-weight:500;margin-bottom:12px}
+.step p{font-size:26px;line-height:1.35;margin-top:10px}
+.cmds{display:flex;flex-direction:column;gap:14px;margin-bottom:28px}
+
+/* github + ia */
+.gh2{display:grid;grid-template-columns:960px 1fr;gap:48px;align-items:start}
+.gh2 .shot{border:1px solid var(--line);background:var(--panel)}
+.gh2 .shot img{display:block;width:100%;height:auto}
+.gh2 figcaption{font:400 20px var(--mono);color:var(--muted);padding:12px 18px}
+.gh2 .side{display:flex;flex-direction:column;gap:22px;min-width:0}
+.gh2 .tile{background:#fff;border:1px solid var(--line);height:150px;display:flex;align-items:center;justify-content:center;padding:20px}
+.gh2 .tile img{max-width:100%;max-height:100%;object-fit:contain}
+.gh2 p{font-size:28px;line-height:1.4}
+.gh2 .thx{font-size:44px;color:var(--fg);font-weight:500}
+
+/* hueco para la cámara (OBS): arriba a la derecha, 384x216. Tecla C para ver la guía */
+.camzone{position:absolute;top:32px;right:120px;width:384px;height:216px;border:3px dashed var(--accent);display:none;place-items:center;font:500 22px var(--mono);letter-spacing:.1em;color:var(--accent);z-index:20;pointer-events:none}
+.camzone.on{display:grid}
+/* nombre de quien habla (debajo del hueco de cámara). Tecla N */
+.speaker{position:absolute;top:252px;right:120px;width:384px;height:38px;display:none;align-items:center;gap:14px;padding:0 16px;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent);font:500 22px var(--display);color:var(--fg);z-index:20;pointer-events:none;white-space:nowrap;overflow:hidden}
+.speaker::before{content:"HABLA";font:500 15px var(--mono);letter-spacing:.14em;color:var(--accent)}
+.speaker.on{display:flex}
 #help{position:fixed;right:14px;bottom:10px;font:12px var(--mono);color:#56627a;z-index:5}
 </style>
 </head>
@@ -122,7 +165,7 @@ code,.mono{font-family:var(--mono)}
 
 <!-- 1. Portada -->
 <section class="slide cover">
-  <div class="grid"></div><div class="arc"></div><div class="arc b"></div>
+  <div class="grid"></div><img class="hero" src="assets/portada.webp" alt="Lanzamiento del cohete SLS con la nave Orion">
   <div class="tag">Misión Artemis · Escenario 1</div>
   <h1>Simulador de<br>ascenso del SLS</h1>
   <p class="sub">Del reposo en la plataforma a 160 km de altitud, programado en C.</p>
@@ -130,22 +173,22 @@ code,.mono{font-family:var(--mono)}
 </section>
 
 <!-- 2. Integrantes -->
-<section class="slide">
+<section class="slide" data-speaker="María Teresa González">
   <div class="tag">Equipo</div>
   <h2>Cinco integrantes, cinco partes del proyecto.</h2>
   <div class="team">
     <div class="person"><div class="ini">ZR</div><h3>Zahira Nahir Ramirez</h3><div class="gh">@ZNR-dev</div><div class="rol">Base del proyecto, menú, coherencia de datos y diagrama de flujo.</div></div>
-    <div class="person"><div class="ini">LS</div><h3>Lucas German Sanabria</h3><div class="gh">@lsegecode</div><div class="rol">Caída libre, gráfico de trayectoria y ejecución por módulo.</div></div>
+    <div class="person"><div class="ini">LS</div><h3>Lucas German Sanabria</h3><div class="gh">@lsegecode</div><div class="rol">Cálculo de caída libre, gráfico de trayectoria y manejo de versionado.</div></div>
     <div class="person"><div class="ini">MG</div><h3>María Teresa González</h3><div class="gh">@inmarittenmy18-commits</div><div class="rol">Gravedad, presentación de resultados e historial de ejecuciones.</div></div>
-    <div class="person"><div class="ini">VV</div><h3>Valentina Vicentin</h3><div class="gh">@valevic2017-source</div><div class="rol">Validaciones e ingreso seguro de datos.</div></div>
-    <div class="person"><div class="ini">LC</div><h3>Luka Cabral Viola</h3><div class="gh">@pattovii</div><div class="rol">Cálculo de MRUV y ejecución directa con datos del usuario.</div></div>
+    <div class="person"><div class="ini">VV</div><h3>Valentina Vicentin</h3><div class="gh">@valevic2017-source</div><div class="rol">Validaciones, ingreso seguro de datos y mensajes de error.</div></div>
+    <div class="person"><div class="ini">LC</div><h3>Luka Cabral Viola</h3><div class="gh">@pattovii</div><div class="rol">Cálculo de MRUV y ejecución de cada módulo por separado.</div></div>
   </div>
 </section>
 
 <!-- 3. Escenario -->
-<section class="slide">
+<section class="slide" data-speaker="María Teresa González">
   <div class="tag">El problema</div>
-  <h2>El SLS despega con la nave Orion y acelera en dos fases.</h2>
+  <h2>El SLS acelera en dos fases.</h2>
   <div class="fases">
     <div class="fase"><div class="k">Fase 1 · motores + 2 SRB</div><div class="v">a = 20,0 m/s²</div><p>Parte del reposo (v = 0, y = 0). Dura 120 s, hasta el desacople de los SRB.</p></div>
     <div class="fase"><div class="k">Fase 2 · motor del núcleo</div><div class="v">a = 12,5 m/s²</div><p>Sigue acelerando hasta h = 160 km, donde los motores se apagan. Sin resistencia del aire.</p></div>
@@ -160,26 +203,77 @@ code,.mono{font-family:var(--mono)}
     <div class="lab" style="left:46%">t = 120 s · desacople SRB</div>
     <div class="lab r" style="left:100%">h = 160 km · apagado</div>
   </div>
-  <p style="margin-top:34px;font-size:30px">El programa responde: rapidez y altitud al desacople, rapidez al apagado, altitud máxima en caída libre y aceleración en múltiplos de <b>g</b>.</p>
+  <p style="margin-top:28px;font-size:30px;flex-shrink:0">El programa responde: rapidez y altitud al desacople, rapidez al apagado, altitud máxima en caída libre y aceleración en múltiplos de <b>g</b>.</p>
 </section>
 
 <!-- 4. Diagrama -->
-<section class="slide">
+<section class="slide dg" data-speaker="María Teresa González">
   <div class="tag">Flujo del programa</div>
   <h2>Del menú a los resultados.</h2>
-  <div class="diagram">
-    <div class="img"><img src="assets/Flujo_de_trabajo.png" alt="Diagrama de flujo del menú principal y de los módulos de la simulación"></div>
-    <ol>
-      <li>Menú principal con 7 opciones.</li>
-      <li>Ingreso y validación de datos.</li>
-      <li>Cálculo de las fases y la caída libre.</li>
-      <li>Reporte final, gráfico e historial.</li>
-    </ol>
-  </div>
+  <svg class="flow" viewBox="0 0 1740 720" role="img" aria-label="Diagrama de flujo del menú principal y de las siete opciones">
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--accent)"/></marker><marker id="am" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>
+  <circle class="nd" cx="56" cy="386" r="42"/><text class="t" x="56" y="394" text-anchor="middle">Inicio</text>
+  <line class="ln acc" x1="98" y1="386" x2="128" y2="386" marker-end="url(#ar)"/>
+  <rect class="nd" x="130" y="336" width="220" height="100"/><text class="t" x="240" y="382" text-anchor="middle">Menú principal</text><text class="s" x="240" y="410" text-anchor="middle">Lee la opción</text>
+  <line class="ln acc" x1="350" y1="386" x2="396" y2="386" marker-end="url(#ar)"/>
+  <polygon class="nd" points="508,302 618,386 508,470 398,386"/><text class="t" x="508" y="382" text-anchor="middle">Opción</text><text class="s" x="508" y="410" text-anchor="middle">¿del 1 al 7?</text>
+  <path class="ln dash" d="M508 470 V520 H190 V436" marker-end="url(#am)"/>
+  <text class="s" x="350" y="508" text-anchor="middle">No: vuelve a pedir la opción</text>
+  <text class="s ok" x="660" y="374" text-anchor="middle">Sí</text>
+  <line class="ln acc" x1="618" y1="386" x2="700" y2="386"/>
+  <line class="ln acc" x1="700" y1="110" x2="700" y2="662"/>
+  <line class="ln acc" x1="700" y1="110" x2="740" y2="110" marker-end="url(#ar)"/>
+  <rect class="nd" x="742" y="76" width="440" height="68"/>
+  <text class="n" x="768" y="121">1</text>
+  <text class="t" x="818" y="107">Datos personalizados</text><text class="s" x="818" y="133">Módulo 1 · valida cada dato</text>
+  <line class="ln acc" x1="700" y1="202" x2="740" y2="202" marker-end="url(#ar)"/>
+  <rect class="nd" x="742" y="168" width="440" height="68"/>
+  <text class="n" x="768" y="213">2</text>
+  <text class="t" x="818" y="199">Usar datos del enunciado</text><text class="s" x="818" y="225">Módulo 1 · valores oficiales</text>
+  <line class="ln acc" x1="700" y1="294" x2="740" y2="294" marker-end="url(#ar)"/>
+  <rect class="nd" x="742" y="260" width="440" height="68"/>
+  <text class="n" x="768" y="305">3</text>
+  <text class="t" x="818" y="291">Resultados detallados</text><text class="s" x="818" y="317">Módulo 5 · g y carga aparente</text>
+  <line class="ln acc" x1="700" y1="386" x2="740" y2="386" marker-end="url(#ar)"/>
+  <rect class="nd" x="742" y="352" width="440" height="68"/>
+  <text class="n" x="768" y="397">4</text>
+  <text class="t" x="818" y="383">Historial de simulaciones</text><text class="s" x="818" y="409">Ejecuciones registradas</text>
+  <line class="ln acc" x1="700" y1="478" x2="740" y2="478" marker-end="url(#ar)"/>
+  <rect class="nd" x="742" y="444" width="440" height="68"/>
+  <text class="n" x="768" y="489">5</text>
+  <text class="t" x="818" y="475">Gráfico de trayectoria</text><text class="s" x="818" y="501">Gráfico ASCII</text>
+  <line class="ln acc" x1="700" y1="570" x2="740" y2="570" marker-end="url(#ar)"/>
+  <rect class="nd" x="742" y="536" width="440" height="68"/>
+  <text class="n" x="768" y="581">6</text>
+  <text class="t" x="818" y="567">Un módulo por separado</text><text class="s" x="818" y="593">Submenú con los módulos 1 a 5</text>
+  <line class="ln acc" x1="700" y1="662" x2="740" y2="662" marker-end="url(#ar)"/>
+  <rect class="nd" x="742" y="628" width="440" height="68"/>
+  <text class="n" x="768" y="673">7</text>
+  <text class="t" x="818" y="659">Salir</text><text class="s" x="818" y="685">Cierra la sesión</text>
+  <line class="ln" x1="1182" y1="110" x2="1202" y2="110"/><line class="ln" x1="1182" y1="202" x2="1202" y2="202"/><line class="ln" x1="1202" y1="110" x2="1202" y2="202"/>
+  <line class="ln acc" x1="1202" y1="156" x2="1220" y2="156" marker-end="url(#ar)"/>
+  <rect class="nd hi" x="1222" y="86" width="260" height="140"/><text class="t" x="1352" y="124" text-anchor="middle">Simular</text><text class="s2" x="1352" y="152" text-anchor="middle">Módulo 2 · coherencia</text><text class="s2" x="1352" y="176" text-anchor="middle">Módulo 3 · fase 2 MRUV</text><text class="s2" x="1352" y="200" text-anchor="middle">Módulo 4 · caída libre</text>
+  <line class="ln acc" x1="1482" y1="156" x2="1520" y2="156" marker-end="url(#ar)"/>
+  <rect class="nd" x="1522" y="122" width="178" height="68"/><text class="t" x="1611" y="153" text-anchor="middle">Registrar</text><text class="s" x="1611" y="179" text-anchor="middle">en historial</text>
+  <line class="ln dash" x1="1182" y1="294" x2="1716" y2="294"/>
+  <text class="s" x="1210" y="282">Requiere simular antes</text>
+  <line class="ln dash" x1="1182" y1="386" x2="1716" y2="386"/>
+  <line class="ln dash" x1="1182" y1="478" x2="1716" y2="478"/>
+  <text class="s" x="1210" y="466">Requiere simular antes</text>
+  <line class="ln dash" x1="1182" y1="570" x2="1716" y2="570"/>
+  <text class="s" x="1210" y="558">Cada módulo pide solo sus datos</text>
+  <line class="ln acc" x1="1182" y1="662" x2="1220" y2="662" marker-end="url(#ar)"/>
+  <rect class="nd" x="1222" y="628" width="260" height="68"/><text class="t" x="1352" y="659" text-anchor="middle">Reporte final</text><text class="s" x="1352" y="685" text-anchor="middle">Resumen de la sesión</text>
+  <line class="ln acc" x1="1482" y1="662" x2="1542" y2="662" marker-end="url(#ar)"/>
+  <circle class="nd ok" cx="1590" cy="662" r="46"/><text class="t" x="1590" y="670" text-anchor="middle">Fin</text>
+  <line class="ln dash" x1="1700" y1="156" x2="1716" y2="156"/>
+  <path class="ln dash" d="M1716 570 V50 H290 V336" marker-end="url(#am)"/>
+  <text class="s" x="1000" y="34" text-anchor="middle">↺ Las opciones 1 a 6 terminan y vuelven al menú principal</text>
+  </svg>
 </section>
 
 <!-- 5. Arquitectura -->
-<section class="slide">
+<section class="slide" data-speaker="Zahira Nahir Ramirez">
   <div class="tag">Arquitectura en C</div>
   <h2>Tres módulos con responsabilidades separadas.</h2>
   <div class="mods">
@@ -190,10 +284,22 @@ code,.mono{font-family:var(--mono)}
   <div class="flow"><em>main.c</em><i>→</i><em>validaciones</em><i>→</i><em>artemis</em><i>→</i><em>resultados por consola</em></div>
 </section>
 
+<!-- Cómo ejecutarlo -->
+<section class="slide" data-speaker="Lucas German Sanabria">
+  <div class="tag">Cómo ejecutarlo</div>
+  <h2>Clonar, compilar y ejecutar.</h2>
+  <div class="steps">
+    <div class="step"><div class="k">1</div><div><h3>Clonar el repositorio</h3><div class="cmd"><code>git clone https://github.com/lsegecode/ACDC.git; cd ACDC</code><button class="copy" type="button" data-copy="git clone https://github.com/lsegecode/ACDC.git; cd ACDC">Copiar</button></div></div></div>
+    <div class="step"><div class="k">2</div><div><h3>Compilar con GCC</h3><div class="cmd"><code>gcc -Wall -Wextra -finput-charset=UTF-8 -fexec-charset=UTF-8 main.c artemis.c validaciones.c -lm -o simulador</code><button class="copy" type="button" data-copy="gcc -Wall -Wextra -finput-charset=UTF-8 -fexec-charset=UTF-8 main.c artemis.c validaciones.c -lm -o simulador">Copiar</button></div><p>Requiere GCC (en Windows, MinGW-w64 o MSYS2). Genera el ejecutable <b>simulador</b>.</p></div></div>
+    <div class="step"><div class="k">3</div><div><h3>Ejecutar el programa</h3><div class="cmd"><code>.\simulador.exe</code><button class="copy" type="button" data-copy=".\simulador.exe">Copiar</button></div><p>En Linux o macOS: <b>./simulador</b>.</p></div></div>
+  </div>
+</section>
+
 <!-- 6. Demo -->
-<section class="slide">
+<section class="slide" data-speaker="Lucas German Sanabria">
   <div class="tag">Demostración</div>
-  <h2>Un caso completo con los datos del enunciado.</h2>
+  <h2 style="margin-bottom:28px">Un caso completo con los datos del enunciado.</h2>
+  <div class="cmds"><div class="cmd"><code>gcc -Wall -Wextra -finput-charset=UTF-8 -fexec-charset=UTF-8 main.c artemis.c validaciones.c -lm -o simulador</code><button class="copy" type="button" data-copy="gcc -Wall -Wextra -finput-charset=UTF-8 -fexec-charset=UTF-8 main.c artemis.c validaciones.c -lm -o simulador">Copiar</button></div><div class="cmd"><code>.\simulador.exe</code><button class="copy" type="button" data-copy=".\simulador.exe">Copiar</button></div></div>
   <div class="split">
     <div class="term">
       <div class="hd">simulador · ejemplo</div>
@@ -216,7 +322,7 @@ code,.mono{font-family:var(--mono)}
 </section>
 
 <!-- 7. Validaciones -->
-<section class="slide">
+<section class="slide" data-speaker="Valentina Vicentin">
   <div class="tag">Validaciones</div>
   <h2>Ante una entrada errónea, el programa pide el dato de nuevo.</h2>
   <div class="split">
@@ -241,28 +347,34 @@ code,.mono{font-family:var(--mono)}
   </div>
 </section>
 
-<!-- 8. Git e IA -->
-<section class="slide">
+<!-- 9. GitHub e IA -->
+<section class="slide" data-speaker="Luka Cabral Viola">
   <div class="tag">Cómo trabajamos</div>
-  <h2>Git para coordinar, IA como apoyo.</h2>
-  <div class="three">
-    <div class="card"><h3>GitHub</h3><ul><li>Ramas por módulo.</li><li>Commits de todo el equipo.</li><li>Historial gradual desde el 31/10.</li></ul></div>
-    <div class="card"><h3>Uso de IA</h3><ul><li>Estructura de módulos .c y .h.</li><li>Funciones de validación segura.</li><li>Revisión de casos de prueba.</li></ul></div>
-    <div class="card"><h3>Validación</h3><ul><li>Revisamos y adaptamos todo el código.</li><li>Comprobamos los cálculos con el enunciado.</li><li>Registro completo en el README.</li></ul></div>
+  <h2>GitHub y herramientas de IA.</h2>
+  <div class="gh2">
+    <figure class="shot"><img src="assets/github.png" alt="Repositorio ACDC en GitHub: 74 commits y 6 contribuyentes"><figcaption>Repositorio ACDC · ramas por módulo y commits de todo el equipo</figcaption></figure>
+    <div class="side">
+      <figure class="logo"><div class="tile"><img src="assets/claude.png" alt="Claude"></div></figure>
+      <figure class="logo"><div class="tile"><img src="assets/gemini.png" alt="Gemini"></div></figure>
+      <p>La IA fue un apoyo. Revisamos, probamos y adaptamos todo el código. El registro completo está en el README.</p>
+      <p class="thx">Gracias.</p>
+    </div>
   </div>
-  <p style="margin-top:54px;font-size:40px;color:var(--fg)">Gracias.</p>
 </section>
 
-<div class="hud"><span>ACDC · ESCENARIO 1</span><span id="count">1 / 8</span></div>
+<div class="camzone" id="camzone">CÁMARA</div>
+<div class="speaker" id="speaker"></div>
+<div class="hud"><span>ACDC · ESCENARIO 1</span><span id="count">1 / 9</span></div>
 <div class="bar" id="bar"></div>
 </div>
-<div id="help">← → navegar · F pantalla completa</div>
+<div id="help">← → navegar · F pantalla completa · C guía de cámara · N nombre</div>
 
 <script>
 (function(){
   var slides=[].slice.call(document.querySelectorAll('.slide'));
   var stage=document.getElementById('stage'),count=document.getElementById('count'),bar=document.getElementById('bar');
-  var i=0;
+  var i=0,showName=true,sp=document.getElementById('speaker');
+  function nameplate(){var n=slides[i].getAttribute('data-speaker')||'';sp.textContent=n;sp.classList.toggle('on',showName&&!!n)}
   function fit(){
     var s=Math.min(innerWidth/1920,innerHeight/1080);
     stage.style.transform='translate(-50%,-50%) scale('+s+')';
@@ -271,20 +383,32 @@ code,.mono{font-family:var(--mono)}
     i=Math.max(0,Math.min(slides.length-1,n));
     slides.forEach(function(el,k){el.classList.toggle('active',k===i)});
     count.textContent=(i+1)+' / '+slides.length;
+    nameplate();
     bar.style.width=((i+1)/slides.length*100)+'%';
     try{history.replaceState(null,'','#'+(i+1))}catch(e){}
   }
   addEventListener('resize',fit);
   addEventListener('keydown',function(e){
+    if(document.activeElement&&document.activeElement.classList.contains('copy')&&(e.key===' '||e.key==='Enter'))return;
     if(['ArrowRight','PageDown',' ','Enter'].indexOf(e.key)>-1){e.preventDefault();go(i+1)}
     else if(['ArrowLeft','PageUp','Backspace'].indexOf(e.key)>-1){e.preventDefault();go(i-1)}
+    else if(e.key==='c'||e.key==='C')document.getElementById('camzone').classList.toggle('on');
+    else if(e.key==='n'||e.key==='N'){showName=!showName;nameplate()}
     else if(e.key==='Home')go(0);
     else if(e.key==='End')go(slides.length-1);
     else if(e.key==='f'||e.key==='F'){
       if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();
     }
   });
-  addEventListener('click',function(e){go(e.clientX<innerWidth*0.25?i-1:i+1)});
+  addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('.copy');
+    if(b){
+      var t=b.getAttribute('data-copy'),ok=function(){b.textContent='Copiado';b.classList.add('done');setTimeout(function(){b.textContent='Copiar';b.classList.remove('done')},1600)};
+      var fb=function(){var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(x){}document.body.removeChild(a)};
+      try{navigator.clipboard.writeText(t).then(ok,fb)}catch(x){fb()}
+      return;
+    }
+    go(e.clientX<innerWidth*0.25?i-1:i+1)});
   fit();
   var h=parseInt((location.hash||'').slice(1),10);
   go(isNaN(h)?0:h-1);
